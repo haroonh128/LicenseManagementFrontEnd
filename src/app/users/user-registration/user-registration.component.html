@@ -1,0 +1,73 @@
+<div class="container mt-5">
+    <h2>User Registration</h2>
+    <form [formGroup]="registrationForm" (ngSubmit)="onSubmit()">
+        <div class="form-group mb-3">
+            <label for="email">Email</label>
+            <input type="email" id="email" class="form-control" formControlName="email">
+            <div *ngIf="registrationForm.get('email')?.invalid && registrationForm.get('email')?.touched"
+                class="text-danger">
+                <small *ngIf="registrationForm.get('email')?.errors?.['required']">Email is required.</small>
+                <small *ngIf="registrationForm.get('email')?.errors?.['email']">Invalid email address.</small>
+            </div>
+        </div>
+
+        <div class="form-group mb-3">
+            <label for="userName">Username</label>
+            <input type="text" id="userName" class="form-control" formControlName="userName">
+        </div>
+
+        <div class="form-group mb-3">
+            <label for="password">Password</label>
+            <input type="password" id="password" class="form-control" formControlName="password">
+            <div *ngIf="registrationForm.get('password')?.invalid && registrationForm.get('password')?.touched"
+                class="text-danger">
+                <small *ngIf="registrationForm.get('password')?.errors?.['required']">Password is required.</small>
+                <small *ngIf="registrationForm.get('password')?.errors?.['minlength']">Password must be at least 6
+                    characters long.</small>
+            </div>
+        </div>
+
+        <div class="form-group mb-3">
+            <label for="firstName">First Name</label>
+            <input type="text" id="firstName" class="form-control" formControlName="firstName">
+            <div *ngIf="registrationForm.get('firstName')?.invalid && registrationForm.get('firstName')?.touched"
+                class="text-danger">
+                <small *ngIf="registrationForm.get('firstName')?.errors?.['required']">First name is required.</small>
+            </div>
+        </div>
+
+        <div class="form-group mb-3">
+            <label for="lastName">Last Name</label>
+            <input type="text" id="lastName" class="form-control" formControlName="lastName">
+            <div *ngIf="registrationForm.get('lastName')?.invalid && registrationForm.get('lastName')?.touched"
+                class="text-danger">
+                <small *ngIf="registrationForm.get('lastName')?.errors?.['required']">Last name is required.</small>
+            </div>
+        </div>
+
+        <div class="form-group mb-3">
+            <label for="phoneNumber">Phone Number</label>
+            <input type="text" id="phoneNumber" class="form-control" formControlName="phoneNumber">
+            <div *ngIf="registrationForm.get('phoneNumber')?.invalid && registrationForm.get('phoneNumber')?.touched"
+                class="text-danger">
+                <small *ngIf="registrationForm.get('phoneNumber')?.errors?.['required']">Phone number is
+                    required.</small>
+            </div>
+        </div>
+
+        <div class="form-group mb-3">
+            <label for="role">Role</label>
+            <!-- <input type="text" id="role" class="form-control" formControlName="role"> -->
+            <select class="form-control" formControlName="role">
+                <option value="admin">Admin</option>
+                <option value="user">User</option>
+            </select>
+            <div *ngIf="registrationForm.get('role')?.invalid && registrationForm.get('role')?.touched"
+                class="text-danger">
+                <small *ngIf="registrationForm.get('role')?.errors?.['required']">Role is required.</small>
+            </div>
+        </div>
+
+        <button type="submit" class="btn btn-primary" [disabled]="registrationForm.invalid">Register</button>
+    </form>
+</div>

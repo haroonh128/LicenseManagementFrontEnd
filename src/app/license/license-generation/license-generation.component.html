@@ -1,0 +1,48 @@
+<div class="container mt-5">
+    <h2>Create License</h2>
+
+    <form [formGroup]="licenseForm" (ngSubmit)="onSubmit()">
+        <!-- <div class="mb-3">
+            <label for="key" class="form-label">License Key</label>
+            <input type="text" id="key" class="form-control" formControlName="key">
+            <div *ngIf="licenseForm.get('key')?.invalid && licenseForm.get('key')?.touched" class="text-danger">
+                License Key is required.
+            </div>
+        </div> -->
+
+        <div class="mb-3">
+            <label for="productId" class="form-label">Product</label>
+            <select id="productId" class="form-select" formControlName="productId">
+                <option value="" disabled selected>Select a product</option>
+                <option *ngFor="let product of commServ.products" [value]="product.id">{{ product.name }}</option>
+            </select>
+            <div *ngIf="licenseForm.get('productId')?.invalid && licenseForm.get('productId')?.touched"
+                class="text-danger">
+                Product is required.
+            </div>
+        </div>
+
+        <div class="mb-3">
+            <label for="userId" class="form-label">User</label>
+            <select id="userId" class="form-select" formControlName="userId">
+                <option value="" disabled selected>Select a user</option>
+                <option *ngFor="let user of commServ.users" [value]="user.id">{{ user.firstName }}</option>
+            </select>
+            <div *ngIf="licenseForm.get('userId')?.invalid && licenseForm.get('userId')?.touched" class="text-danger">
+                User is required.
+            </div>
+        </div>
+
+        <div class="mb-3 form-check">
+            <input type="checkbox" id="isActive" class="form-check-input" formControlName="isActive">
+            <label for="isActive" class="form-check-label">Is Active</label>
+        </div>
+
+        <!-- <div class="mb-3 form-check">
+            <input type="checkbox" id="isDeleted" class="form-check-input" formControlName="isDeleted">
+            <label for="isDeleted" class="form-check-label">Is Deleted</label>
+        </div> -->
+
+        <button type="submit" class="btn btn-primary" [disabled]="licenseForm.invalid">Create License</button>
+    </form>
+</div>

@@ -1,0 +1,43 @@
+<div class="container mt-5">
+    <h2>License Management</h2>
+
+    <!-- Create License Button -->
+    <div class="mb-3">
+        <button class="btn btn-primary" routerLink="generateLicense">Create License</button>
+    </div>
+
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Key</th>
+                <th>Product Id</th>
+                <th>User Id</th>
+                <th>Created Date</th>
+                <th>Modified Date</th>
+                <th>Status</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let license of licenses">
+                <td>{{ license.id }}</td>
+                <td>{{ license.key }}</td>
+                <td>{{ license.productId }}</td>
+                <td>{{ license.userId }}</td>
+                <td>{{ license.createdDate | date:'short' }}</td>
+                <td>{{ license.modifiedDate | date:'short' }}</td>
+                <td>
+                    <span [ngClass]="{'text-success': license.isActive, 'text-danger': !license.isActive}">
+                        {{ license.isActive ? 'Active' : 'Inactive' }}
+                    </span>
+                </td>
+                <td>
+                    <button *ngIf="!license.isActive" class="btn btn-sm btn-success"
+                        (click)="activateLicense(license)">Activate</button>
+                    <!-- <button class="btn btn-sm btn-danger" (click)="deleteLicense(license.id)">Delete</button> -->
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

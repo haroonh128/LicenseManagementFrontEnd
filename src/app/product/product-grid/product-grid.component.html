@@ -1,0 +1,38 @@
+<div class="container mt-5">
+    <h2>Product Management</h2>
+
+    <!-- Create Product Button -->
+    <div class="mb-3">
+        <button class="btn btn-primary" routerLink="createProduct">Create Product</button>
+    </div>
+
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Version</th>
+                <th>Description</th>
+                <th>Created Date</th>
+                <th>Modified Date</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let product of commServ.products">
+                <td>{{ product.id }}</td>
+                <td>{{ product.name }}</td>
+                <td>{{ product.version }}</td>
+                <td>{{ product.description }}</td>
+                <td>{{ product.createdDate | date:'short' }}</td>
+                <td>{{ product.modifiedDate | date:'short' }}</td>
+
+                <td class="d-flex">
+                    <button *ngIf="!product.isDeleted" class="btn btn-sm btn-success"
+                        (click)="updateProduct(product.id.toString())">Update</button>
+                    <button class="btn btn-sm btn-danger" (click)="deleteProduct(product.id)">Delete</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
